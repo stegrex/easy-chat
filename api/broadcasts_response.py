@@ -22,13 +22,17 @@ class BroadcastsResponse():
     def get_all_messages(self):
         return self.messagesDataStore.get_all_messages(self.appType)
 
-    def process_broadcast(self, messageID, broadcaster):
+    def process_text_broadcast(self, messageID, messageText = None, broadcaster = None):
+        return self.process_broadcast(messageID, messageText, broadcaster)
+
+    def process_broadcast(self, messageID, messageText = None, broadcaster = None):
         message = self.messagesDataStore.get_message(messageID)
         broadcast = self.broadcastsDataStore.get_empty_broadcast()
         broadcastID = str(uuid.uuid4())
         broadcast.id = broadcastID
         broadcast.globalID = broadcastID
         broadcast.messageID = messageID
+        broadcast.text = messageText
         broadcast.broadcasterID = broadcaster.id
         broadcast.broadcasterData = broadcaster.to_dictionary()
         self.broadcastsDataStore.create(broadcast, self.appType)

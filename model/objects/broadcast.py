@@ -5,7 +5,7 @@ class Broadcast():
         self.globalID = None
         self.messageID = None
         self.broadcasterID = None
-        #self.text = None
+        self.text = None
         #self.url = None
         self.nextBroadcastIDs = {}
         self.broadcasterData = None
@@ -25,6 +25,7 @@ class Broadcast():
         self.globalID = broadcastDictionary.get('globalID')
         self.messageID = broadcastDictionary.get('messageID')
         self.broadcasterID = broadcastDictionary.get('broadcasterID')
+        self.text = broadcastDictionary.get('text')
         self.nextBroadcastIDs = broadcastDictionary.get('nextBroadcastIDs')
         self.broadcasterData = broadcastDictionary.get('broadcasterData')
         self.createdTime = broadcastDictionary.get('createdTime')
@@ -38,6 +39,7 @@ class Broadcast():
             'globalID' : self.globalID,
             'messageID' : self.messageID,
             'broadcasterID' : self.broadcasterID,
+            'text' : self.text,
             'nextBroadcastIDs' : self.nextBroadcastIDs,
             'broadcasterData' : self.broadcasterData,
             'createdTime' : self.createdTime

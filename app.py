@@ -30,26 +30,33 @@ def handle_event(sid, json):
     #return {}
     messageID = json['data']['messageID']
     sessionID = json['data']['sessionID']
+    broadcastText = json['data']['broadcastText']
     from api.signon_response import SignonResponse
     signonResponse = SignonResponse()
     user = signonResponse.get_user_from_session_id(sessionID)
     if not user:
         return {}
     broadcastsResponse = BroadcastsResponse(env_config.appType)
-    message, broadcastID = broadcastsResponse.process_broadcast(messageID, user)
-    if message:
+    message, broadcastID = broadcastsResponse.process_text_broadcast(
+        messageID,
+        broadcastText,
+        user
+    )
+    if broadcastText:
         timestamp = time.time()
         dt = datetime.datetime.utcnow()
         formattedTime = dt.strftime('%Y-%m-%d %H:%M:%S UTC')
         timestamp = dt.timestamp()
         displayName = user.displayName
         sio.emit('messageResponse', {
-            'messageID' : message.id,
-            'messageURL' : message.url,
+            #'messageID' : message.id,
+            #'messageText' : message.text,
+            #'messageURL' : message.url,
             'broadcastID' : broadcastID,
+            'broadcastText' : broadcastText,
             'html' : bottle.template(
-                'elements-message-panel',
-                message=message,
+                'elements-broadcast-text',
+                broadcastText=broadcastText,
                 displayName=displayName,
                 formattedTime=formattedTime
             )

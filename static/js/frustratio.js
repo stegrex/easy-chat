@@ -33,10 +33,13 @@ $(document).ready(function() {
         });
         socket.on('messageResponse', function(response) {
             console.log(response);
+            /*
             if (audioToggle) {
                 $('#audio-' + response['messageID'])[0].play();
             }
-            $('#broadcast').prepend(response['html']);
+            */
+            $('#broadcast').append(response['html']);
+            $(".well").scrollTop($(".well")[0].scrollHeight);
         });
         renewUser();
     };
@@ -148,16 +151,18 @@ $(document).ready(function() {
         });
     });
 
-    /*
     $('#client-input').submit(function(e) {
-        console.log($(this).find('textarea').val());
+        //console.log($(this).find('textarea').val());
         socket.emit('messageEvent', {
             data: {
-                message: $(this).find('textarea').val()
+                sessionID: sessionID,
+                messageID: -1,
+                broadcastText: $(this).find('#textInput').val()
+                //message: $(this).find('textarea').val()
             }
         });
         e.preventDefault();
+        $(this).find('#textInput').val('');
     });
-    */
 
 });
