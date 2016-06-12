@@ -51,7 +51,7 @@ body {
 }
 
 form.main {
-    margin-top: 120px;
+    margin-top: 100px;
 }
 
 .message-panel {
@@ -80,4 +80,10 @@ form.main {
 .message-timestamp {
     font-size: small;
     color: LightGray;
+}
+
+.well {
+    overflow: scroll;
+    min-height: 350px;
+    max-height: 350px;
 }

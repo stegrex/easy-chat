@@ -30,6 +30,7 @@ class MessagesDataStore():
             }
         }
         self.messageKeys = {
+            'easy-chat' : [],
             '' : [
                 'fuck0',
                 'fuck1',

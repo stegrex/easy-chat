@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>frustrat.io</title>
+    <title>easy-chat</title>
     <script src="/static/lib/socket.io-1.4.5.js?{{deployTag}}"></script>
     <script src="/static/lib/jquery-2.2.0.js?{{deployTag}}"></script>
     <script src="/static/lib/bootstrap-3.3.6-dist/js/bootstrap.min.js?{{deployTag}}"></script>
@@ -15,39 +15,31 @@
     <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
 
     <meta charset="utf-8">
-    <meta name="description" content="frustrat.io: Broadcast your frustration.">
-    <meta name="keywords" content="frustrat.io">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
     <meta name="author" content="maxchen675">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
     <div class="header" data-spy="affix" data-offset-top="150">
-        <h1>frustratio</h1>
-        <h2>Broadcast your frustration.</h2>
+        <h1>easy-chat</h1>
         <a class="btn btn-default pull-right" href="/api/signout">Sign out</a>
     </div>
     <div class="container">
         <input type="hidden" id="sessionID" name="sessionID" value="{{sessionID}}" />
         <form id="client-input" class="main">
-            <div class="alert alert-info" role="alert">
-                New features and messages are currently being developed! Stay tuned for new stuff!
-            </div>
-            <div class="form-group">
-                <input id="audio-toggle" checked data-toggle="toggle" type="checkbox" />
-                <span class="glyphicon glyphicon-volume-up"></span>
-            </div>
             {{!messageInputs}}
-            <!--
+            <div id="broadcast" class="well"></div>
             <div class="form-group">
-                <textarea></textarea>
+                <label for="textInput">Message:</label>
+                <!--<textarea class="form-control" id="textInput"></textarea>-->
+                <input type="text" class="form-control" id="textInput" placeholder="Enter to send" />
             </div>
             <div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-default">Send</button>
             </div>
-            -->
         </form>
-        <div id="broadcast" class="well"></div>
     </div>
     <div class="modal fade" id="signon-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog">

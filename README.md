@@ -1,4 +1,4 @@
-# Frustratio
+# Easy Chat
 
 ## Environment Setup
 
