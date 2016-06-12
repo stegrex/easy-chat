@@ -22,6 +22,7 @@ $(document).ready(function() {
                 //messages = $.parseJSON(data);
                 //console.log(messages);
                 appendBroadcasts(data);
+                $(".well").scrollTop($(".well")[0].scrollHeight);
             }
         });
         socket = io.connect('http://' + document.domain + ':' + location.port);
@@ -46,29 +47,19 @@ $(document).ready(function() {
 
     var appendBroadcasts = function(messages) {
         $.ajax({
-            url: '/api/broadcasts',
+            url: '/api/broadcasts/reversed',
             method: 'GET',
             success: function(data) {
                 var broadcasts = $.parseJSON(data);
                 $($.parseJSON(data)).each(function() {
-                    if (messages[this['messageID']]) {
-                        var date = new Date(parseInt(this['createdTime']) * 1000);
-                        $('#broadcast').append(
-                            '<div class="message-panel">' +
-                                '<div class="message-username">' +
-                                    '<span class="name">' +
-                                        this['broadcasterData']['displayName'] +
-                                    '</span>' +
-                                    ' broadcasted:' +
-                                '</div>' +
-                                '<div class="message-broadcast">' +
-                                    messages[this['messageID']]['text'] +
-                                '</div>' +
-                                '<div class="message-timestamp">' + date.toISOString() + '</div>' +
-                            '</div>'
-                        );
-                        console.log(this);
-                    }
+                    var date = new Date(parseInt(this['createdTime']) * 1000);
+                    $('#broadcast').append(
+                        '<p>' +
+                            '<span class="name">' + this['broadcasterData']['displayName'] +':</span> ' +
+                            this['text'] +
+                        '</p>'
+                    );
+                    console.log(this);
                 });
             }
         });

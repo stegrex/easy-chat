@@ -42,7 +42,7 @@ def handle_event(sid, json):
         broadcastText,
         user
     )
-    if broadcastText:
+    if broadcastID:
         timestamp = time.time()
         dt = datetime.datetime.utcnow()
         formattedTime = dt.strftime('%Y-%m-%d %H:%M:%S UTC')
@@ -93,8 +93,19 @@ def render_index():
 def get_broadcasts():
     from api.broadcasts_response import BroadcastsResponse
     broadcastsResponse = BroadcastsResponse(env_config.appType)
-    response = broadcastsResponse.get_last_broadcasts_response(10)
+    response = broadcastsResponse.get_last_broadcasts_response(100)
     return json.dumps(response)
+
+@app.get('/api/broadcasts/reversed')
+@app.get('/api/broadcasts/reversed/')
+def get_broadcasts():
+    from api.broadcasts_response import BroadcastsResponse
+    broadcastsResponse = BroadcastsResponse(env_config.appType)
+    response = broadcastsResponse.get_last_broadcasts_response(100)
+    output = []
+    for x in range(len(response)):
+        output.append(response[len(response) - x - 1])
+    return json.dumps(output)
 
 @app.get('/api/messages')
 @app.get('/api/messages/')
