@@ -22,7 +22,6 @@ $(document).ready(function() {
                 //messages = $.parseJSON(data);
                 //console.log(messages);
                 appendBroadcasts(data);
-                $(".well").scrollTop($(".well")[0].scrollHeight);
             }
         });
         socket = io.connect('http://' + document.domain + ':' + location.port);
@@ -61,6 +60,7 @@ $(document).ready(function() {
                     );
                     console.log(this);
                 });
+                $(".well").scrollTop($(".well")[0].scrollHeight);
             }
         });
     };
