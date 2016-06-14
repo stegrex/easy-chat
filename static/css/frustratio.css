@@ -21,7 +21,7 @@ body {
     background: -o-repeating-linear-gradient(Dimgray, Dimgray 50%, Gray 100%);
     background: -moz-repeating-linear-gradient(Dimgray, Dimgray 50%, Gray 100%);
     background: repeating-linear-gradient(Dimgray, Dimgray 50%, #Gray 100%);
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
 }
 
 .header h1 {
@@ -42,7 +42,7 @@ body {
 
 .container {
     background-color: Gainsboro;
-    padding-bottom: 100%;
+    padding-bottom: 10px;
     opacity: 0.9;
 }
 
@@ -51,7 +51,7 @@ body {
 }
 
 form.main {
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 .message-panel {
@@ -84,6 +84,6 @@ form.main {
 
 .well {
     overflow: scroll;
-    min-height: 350px;
-    max-height: 350px;
+    min-height: 340px;
+    max-height: 340px;
 }
